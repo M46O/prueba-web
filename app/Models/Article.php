@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Article extends Model
 {
-    use HasFactory;
+    use HasFactory, SearchableTrait;
 
     protected $fillable = [
         'uid',
@@ -17,13 +18,19 @@ class Article extends Model
 
         'abstract',
         'byline',
-
-        'popular_date_at',
     ];
 
     protected $cast = [
         'uid' => 'integer',
         'popular_date_at' => 'date'
+    ];
+
+    protected $searchable = [
+        'columns' => [
+            'title' => 10,
+            'byline' => 7,
+            'abstract' => 5
+        ]
     ];
 
     public function images()

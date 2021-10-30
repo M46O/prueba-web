@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Se prefiere rutas agrupadas para mas orden al implementar mas metodos.
+Route::prefix('articles')->group(function () {
+    Route::get('/', [ArticleController::class, 'index']);
 });

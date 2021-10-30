@@ -19,7 +19,10 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('navbar-component', require('./components/NavbarComponent.vue').default);
+Vue.component('article-card-component', require('./components/ArticleCardComponent.vue').default);
+Vue.component('articles-report-component', require('./components/ArticlesReportComponent.vue').default);
+Vue.component('loading-component', require('./components/ArticlesReportComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
