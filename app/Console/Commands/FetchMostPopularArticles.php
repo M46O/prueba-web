@@ -47,10 +47,15 @@ class FetchMostPopularArticles extends Command
      */
     public function handle()
     {
+        //Type Fetch se debe a las diferentes secciones de most populares que tiene
+        //el api de NYT.
+
         $typeFetch = $this->argument('type');
 
         try {
             DB::beginTransaction();
+
+            // Tomar en cuenta que la api key se tiene que agregar al archivo .env
 
             $response = Http::get(self::BASE_URL . "/$typeFetch/1.json", ['api-key' => config('nyt.key')]);
 
@@ -66,6 +71,7 @@ class FetchMostPopularArticles extends Command
 
                 $article->save();
 
+                //Se verifica que el articulo cuente con una lista de imagenes
                 if (isset($result['media'][0]['media-metadata'])) {
                     $article->images()->createMany($result['media'][0]['media-metadata']);
                 }

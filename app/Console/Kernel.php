@@ -25,6 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // Se implementa withoutOverlapping para evitar que se ejecute el mismo proceso
+        // mientras el anterior aun no termina.
+
         $schedule->command(FetchMostPopularArticles::class, [FetchMostPopularArticles::EMAILED])
             ->everyMinute()->withoutOverlapping();
 

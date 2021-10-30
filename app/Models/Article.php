@@ -28,8 +28,6 @@ class Article extends Model
     protected $searchable = [
         'columns' => [
             'title' => 10,
-            'byline' => 7,
-            'abstract' => 5
         ]
     ];
 
@@ -38,6 +36,7 @@ class Article extends Model
         return $this->hasMany(Image::class);
     }
 
+    // Se filtra la relacion de imagenes por la que cuente con la mayor resolucion
     public function highResolution()
     {
         return $this->hasOne(Image::class)->ofMany('width');
